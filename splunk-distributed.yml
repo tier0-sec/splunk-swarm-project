@@ -1,0 +1,78 @@
+version: '3'
+
+networks:
+  splunknet:
+    driver: overlay
+    attachable: true
+
+services:
+  splunk-search-head:
+    networks:
+      splunknet:
+        aliases:
+          - sh1
+    image: splunk/splunk:latest
+    hostname: sh1
+    ports:
+      - "8000:8000"
+      - "8089:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node1]
+
+  splunk-monitoring-console:
+    networks:
+      splunknet:
+        aliases:
+          - mc
+    image: splunk/splunk:latest
+    hostname: mc
+    ports:
+      - "8001:8000"
+      - "8090:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node2]
+
+  splunk-indexer:
+    networks:
+      splunknet:
+        aliases:
+          - idx1
+    image: splunk/splunk:latest
+    hostname: idx1
+    ports:
+      - "8002:8000"
+      - "8091:8089"
+      - "9997:9997"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node3]
+
+volumes:
+  splunk_data:
+  splunk_etc:
