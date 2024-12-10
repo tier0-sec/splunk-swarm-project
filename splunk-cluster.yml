@@ -28,6 +28,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -59,6 +60,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -90,6 +92,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -121,6 +124,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -152,6 +156,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -184,6 +189,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -216,6 +222,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
@@ -248,6 +255,7 @@ services:
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
       - NO_HEALTHCHECK=true
+      - SPLUNK_LICENSE_URI=/run/secrets/splunk_license
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
