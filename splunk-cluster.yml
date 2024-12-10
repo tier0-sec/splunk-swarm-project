@@ -1,0 +1,262 @@
+version: '3'
+
+networks:
+  splunknet:
+    driver: overlay
+    attachable: true
+
+services:
+  splunk-search-head1:
+    networks:
+      splunknet:
+        aliases:
+          - sh1
+    image: splunk/splunk:latest
+    hostname: sh1
+    ports:
+      - "8000:8000"
+      - "8089:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_search_head
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node1]
+
+splunk-search-head2:
+    networks:
+      splunknet:
+        aliases:
+          - sh2
+    image: splunk/splunk:latest
+    hostname: sh2
+    ports:
+      - "8001:8000"
+      - "8090:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_search_head
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node1]
+  
+  splunk-search-head3:
+    networks:
+      splunknet:
+        aliases:
+          - sh3
+    image: splunk/splunk:latest
+    hostname: sh3
+    ports:
+      - "8002:8000"
+      - "8091:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_search_head
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node1] 
+        
+  splunk-deployer:
+    networks:
+      splunknet:
+        aliases:
+          - dep
+    image: splunk/splunk:latest
+    hostname: dep
+    ports:
+      - "8003:8000"
+      - "8092:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_deployer
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node2] 
+        
+  splunk-cluster-manager:
+    networks:
+      splunknet:
+        aliases:
+          - cm
+    image: splunk/splunk:latest
+    hostname: cm
+    ports:
+      - "8004:8000"
+      - "8093:8089"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_cluster_manager
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node2]
+
+  splunk-indexer1:
+    networks:
+      splunknet:
+        aliases:
+          - idx1
+    image: splunk/splunk:latest
+    hostname: idx1
+    ports:
+      - "8005:8000"
+      - "8094:8089"
+      - "9996:9997"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_indexer
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node3]
+  
+  splunk-indexer2:
+    networks:
+      splunknet:
+        aliases:
+          - idx2
+    image: splunk/splunk:latest
+    hostname: idx2
+    ports:
+      - "8006:8000"
+      - "8095:8089"
+      - "9995:9997"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_indexer
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node3]
+  
+  splunk-indexer3:
+    networks:
+      splunknet:
+        aliases:
+          - idx3
+    image: splunk/splunk:latest
+    hostname: idx3
+    ports:
+      - "8007:8000"
+      - "8096:8089"
+      - "9994:9997"
+    environment:
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=enter_password_here
+      - SPLUNK_ROLE=splunk_indexer
+      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_INDEXER_URL=idx1,idx2,idx3
+      - SPLUNK_DEPLOYER_URL=dep
+      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
+      - SPLUNK_SHC_SECRET=enter_password_here
+      - SPLUNK_IDXC_SECRET=enter_password_here
+      - NO_HEALTHCHECK=true
+    volumes:
+      - splunk_data:/opt/splunk/var
+      - splunk_etc:/opt/splunk/etc
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints: [node.hostname == docker-node3]
+
+volumes:
+  splunk_data:
+  splunk_etc:
