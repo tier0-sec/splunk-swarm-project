@@ -23,7 +23,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -54,7 +54,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -85,7 +85,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -116,7 +116,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -130,7 +130,7 @@ services:
       placement:
         constraints: [node.hostname == docker-node2]
 
-  splunk-cluster-manager:
+  splunk-cluster-MASTER:
     networks:
       splunknet:
         aliases:
@@ -143,11 +143,11 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
-      - SPLUNK_ROLE=splunk_cluster_manager
+      - SPLUNK_ROLE=splunk_cluster_MASTER
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -179,7 +179,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -211,7 +211,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
@@ -243,7 +243,7 @@ services:
       - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
-      - SPLUNK_CLUSTER_MANAGER_URL=cm
+      - SPLUNK_CLUSTER_MASTER_URL=cm
       - SPLUNK_SEARCH_HEAD_CAPTAIN_URL=sh1
       - SPLUNK_SHC_SECRET=Splunk01
       - SPLUNK_IDXC_SECRET=Splunk01
