@@ -60,7 +60,7 @@ services:
     ports:
       - "8002:8000"
       - "8091:8089"
-      - "9997:9997"
+      - "9996:9997"
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=enter_password_here
