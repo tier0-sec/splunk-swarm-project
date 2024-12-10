@@ -37,7 +37,7 @@ services:
       placement:
         constraints: [node.hostname == docker-node1]
 
-splunk-search-head2:
+  splunk-search-head2:
     networks:
       splunknet:
         aliases:
