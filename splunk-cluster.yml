@@ -20,7 +20,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_search_head
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -52,7 +52,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_search_head
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -84,7 +84,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_search_head
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -116,7 +116,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_deployer
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -148,7 +148,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_cluster_master
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -181,7 +181,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_indexer
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -214,7 +214,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_indexer
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
@@ -247,7 +247,7 @@ services:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=Splunk01
       - SPLUNK_ROLE=splunk_indexer
-      - SPLUNK_SEARCH_HEAD_URL=sh1,sh2,sh3
+      - SPLUNK_SEARCH_HEAD_URL=sh2,sh3
       - SPLUNK_INDEXER_URL=idx1,idx2,idx3
       - SPLUNK_DEPLOYER_URL=dep
       - SPLUNK_CLUSTER_MASTER_URL=cm
