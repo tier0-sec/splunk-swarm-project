@@ -42,7 +42,7 @@ services:
     environment:
       - SPLUNK_START_ARGS=--accept-license
       - SPLUNK_PASSWORD=enter_password_here
-      - SPLUNK_ROLE=splunk_monitoring_console
+      - SPLUNK_ROLE=splunk_monitor
     volumes:
       - splunk_data:/opt/splunk/var
       - splunk_etc:/opt/splunk/etc
